@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../resourse/app_drawable.dart';
-import 'road_path.dart';
+import 'point_widget.dart';
+import 'package:path_drawing/path_drawing.dart';
 
 class BackgroundWidget extends StatelessWidget {
   @override
@@ -14,29 +15,48 @@ class BackgroundWidget extends StatelessWidget {
         Image.asset(AppDrawable.bg,
             width: MediaQuery.of(context).size.width, fit: BoxFit.fitWidth),
         Positioned(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 42),
-              child: RoadPath(width: 127, step: 2,),
+            child: SizedBox(
+              width: 127,
+              child: SvgPicture.asset(AppDrawable.img_road),
             ),
             bottom: 68),
         Padding(
-          padding: const EdgeInsets.only(bottom: 39),
+          padding: const EdgeInsets.only(bottom: 39, left: 42),
           child: SvgPicture.asset(AppDrawable.btn_start),
         ),
         Positioned(
           child: Padding(
-            padding: const EdgeInsets.only(right: 220),
-            child: Image.asset(AppDrawable.ic_point_blue),
+            padding: const EdgeInsets.only(right: 176),
+            child: PointWidget(
+                icon: AppDrawable.ic_point_blue,
+                checked: AppDrawable.ic_point_blue_checked),
           ),
-          bottom: 160,
+          bottom: 164,
+        ),
+        Positioned(
+          child: PointWidget(
+            icon: AppDrawable.ic_point_green,
+            checked: AppDrawable.ic_point_green_checked,
+          ),
+          bottom: 228,
         ),
         Positioned(
           child: Padding(
-            padding: const EdgeInsets.only(right: 42),
-            child: Image.asset(AppDrawable.ic_point_green),
+            padding: const EdgeInsets.only(left: 176),
+            child: PointWidget(
+              icon: AppDrawable.ic_point_violet,
+              checked: AppDrawable.ic_point_violet_checked,
+            ),
           ),
-          bottom: 226,
-        )
+          bottom: 266,
+        ),
+        Positioned(
+          child: PointWidget(
+            icon: AppDrawable.ic_point_orange,
+            checked: AppDrawable.ic_point_orange_checked,
+          ),
+          bottom: 326,
+        ),
       ],
     );
   }

@@ -8,12 +8,22 @@ class DemoPage extends StatefulWidget {
   State<StatefulWidget> createState() => _DemoPage();
 }
 
-class _DemoPage extends State<DemoPage> {
+class _DemoPage extends State<DemoPage> with SingleTickerProviderStateMixin {
   final scrollController = ScrollController();
+  late AnimationController _controller;
+  late Animation _animation;
 
   @override
   void initState() {
     super.initState();
+
+    _controller = AnimationController(vsync: this,duration: Duration(milliseconds: 5000));
+    _animation = Tween(begin: 0.0,end: 1.0).animate(_controller)
+      ..addListener((){
+        setState(() {
+        });
+      });
+    _controller.forward();
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       scrollController.jumpTo(scrollController.position.maxScrollExtent);
